@@ -142,6 +142,15 @@ body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inse
 <div class="divider"></div>
 
 <section class="section">
+    <img src="images/2_1.png" alt="Фото 3">
+    <video class="video-overlay" id="videoPreview">
+        <source src="images/2_1_prevue.mp4" type="video/mp4">
+    </video>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
     <img src="images/2.png" alt="Фото 3">
 </section>
 <div class="divider"></div>
@@ -162,6 +171,19 @@ body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inse
         height: auto;
         background: transparent;
         border: none;
+    }
+
+    .video-overlay {
+        position: absolute;
+        left: 21%;
+        top: 49%;
+        transform: translate(-50%, -50%);
+        width: clamp(40px, 31%, 3000px);
+        height: auto;
+        max-height: 130vh;
+        cursor: pointer;
+        border-radius: 12px;
+        z-index: 3;
     }
 </style>
 
@@ -205,6 +227,7 @@ setInterval(checkServerHealth, 60 * 60 * 1000);
 
     const buttonInfo = document.querySelector('.button_info');
     const buttonInfo2 = document.querySelector('.button41');
+    const videoPreview = document.getElementById('videoPreview');
 
     buttonInfo.addEventListener('click', () => {
        openPay();
@@ -212,6 +235,16 @@ setInterval(checkServerHealth, 60 * 60 * 1000);
     buttonInfo2.addEventListener('click', () => {
         openPay();
     });
+
+    if (videoPreview) {
+        videoPreview.addEventListener('click', () => {
+            if (videoPreview.paused) {
+                videoPreview.play();
+            } else {
+                videoPreview.pause();
+            }
+        });
+    }
 
   function openPay() {
     const payUrl = 'https://link.payform.ru/?paymentLinkId=cafae511-df4e-4a3b-8dc9-4dab74a3f090';
